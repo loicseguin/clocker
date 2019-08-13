@@ -101,7 +101,7 @@ def report(start=None, end=None):
         date = datetime.date.today() - datetime.timedelta(7)
         start, end = get_week_boundaries(date)
     timedeltas = work_periods(get_records(start=start, end=end))
-    projects = set([delta.project for delta in timedeltas])
+    projects = {delta.project for delta in timedeltas}
 
     column_names = ['Project', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Total']
     rows_dict = {proj: [proj] + [0 for _ in range(8)] for proj in projects}
